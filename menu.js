@@ -31,7 +31,14 @@
 */
 
 //CODE HERE
-
+let pizza = {
+    name: "Meat Lovers",
+    price: 20.00,
+    category: "Entree",
+    popularity: 1,
+    rating: 4.8,
+    tags: ["Medium", "Large", "GF Available", "Ham", "Pepperoni", "Cabanossi", "Beef", "Bacon"]
+}
 
 
 //////////////////PROBLEM 2////////////////////
@@ -43,6 +50,7 @@
 */
 
 //CODE HERE
+console.log(pizza.popularity);
 
 
 /*
@@ -53,7 +61,7 @@
 */
 
 //CODE HERE
-
+pizza.tags.length >= 2 ? console.log(pizza.tags[1]) : console.log("Tag does not exist");
 
 /*
     Third, destructure the price off of the
@@ -63,7 +71,8 @@
 */
 
 //CODE HERE
-
+let {price} = pizza;
+console.log(price);
 
 /*
     Fourth, and last, destructure the category
@@ -73,7 +82,8 @@
 */
 
 //CODE HERE
-
+let {category} = pizza;
+console.log(category);
 
 //////////////////PROBLEM 3////////////////////
 /* 
@@ -88,7 +98,24 @@
 */
 
 //CODE HERE
+class Pizza {
+    constructor(name, price, popularity, tags, rating, category = "Entree") {
+        this.name = name;
+        this.price = price;
+        this.popularity = popularity;
+        this.tags = tags;
+        this.category = category;
+        this.rating = rating;
+    }
+}
 
+let foodArr = [
+    new Pizza("Cheese", 17.00, 4, ["Cheese", "Mozerella", "Ricotta", "Parmesean", "GF Available", "Large"], 3.9),
+    new Pizza("BBQ Chicken", 20.00, 3, ["Chicken", "Mushroom", "Cabsicum", "Onions"], 4.2),
+    new Pizza("Amigos", 22.00, 14, ["Beef", "Onion", "Cabsicum", "Diced Tomatoes", "Chilli", "Beans", "Tortilla Chips", "Sour Cream"], 4.5),
+    new Pizza("Popeye", 24.00, 12, ["Spinach", "Spanish Onion", "Feta", "Fresh Tomato", "Bacon", "GF Available"], 4.6),
+    new Pizza("Basilica", 21.00, 7, ["Fresh Tomato", "Haloumi", "Basil", "Chilli"], 4.4)
+]
 
 
 //////////////////PROBLEM 4////////////////////
@@ -103,9 +130,8 @@
     your food objects has.
 */
 
-//CODE HERE
-
-// const filteredFood = foodArr.filter(/* CALLBACK HERE */)
+const filteredFood = foodArr.filter(pizza => pizza.tags.includes("Cabsicum"));
+console.log(filteredFood);
 
 
 
@@ -150,6 +176,35 @@
 
 //CODE HERE
 
+function pizzaFilterByNum(pizza, property, number, type) {
+    if (property.toLowerCase() === "popularity") {
+        if(type.toLowerCase() === "above") {
+            return pizza[property] <= number;
+        } else if (type.toLowerCase() === "below") {
+            return pizza[property] > number;
+        }
+    }else {
+        if(type.toLowerCase() === "above") {
+            return pizza[property] >= number;
+        } else if (type.toLowerCase() === "below") {
+            return pizza[property] < number;
+        }
+    }
+}
+
+function pizzaFilterTag(pizza, tagName) {
+    return pizza.tags.includes(tagName);
+}
+
+const filterByProperty = (property, number = 0, type = "above", tag = "") => {
+    let filteredArr;
+    if(property === "tags") {
+        filteredArr = foodArr.filter(pizza => pizzaFilterTag(pizza, tag))
+    } else {
+       filteredArr = foodArr.filter(pizza => pizzaFilterByNum(pizza, property, number, type));
+    }
+    return filteredArr;
+}
 
 /*
     Invoke the `filterByProperty` function passing
@@ -159,3 +214,7 @@
 */
 
 //CODE HERE
+console.log(filterByProperty("popularity", 5, "Above"));
+console.log(filterByProperty("rating", 4.0, "BELOW"));
+console.log(filterByProperty("tags", 0, "ABOVE", "Fresh Tomato"));
+console.log(filterByProperty("rating", 4.4));
