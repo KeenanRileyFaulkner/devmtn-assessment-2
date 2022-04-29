@@ -30,7 +30,30 @@
 */
 
 //CODE HERE
+function currTime() {
+    const today = new Date();
+    let hours;
+    today.getHours() < 10 ? hours = "0" + today.getHours() : hours = today.getHours();
+    let mins;
+    today.getMinutes() < 10 ? mins = "0" + today.getMinutes() : mins = today.getMinutes();
+    let secs;
+    today.getSeconds() < 10 ? secs = "0" + today.getSeconds() : secs = today.getSeconds();
+    return hours + ":" + mins + ":" + secs;
+}
 
+class Ticket {
+    constructor(items, customerId, orderTime = currTime()) {
+        this.items = items;
+        this.orderTime = orderTime;
+        this.customerId = customerId;
+        this.status = "queued";
+    }
+
+    updateStatus(newStatus) {
+        this.status = newStatus;
+        console.log(`The order for customer ${this.customerId} is now ${this.status}`);
+    }
+}
 
 
 /*
@@ -45,7 +68,8 @@
 */
 
 //CODE HERE
-
+let firstTicket = new Ticket(["pizza", "bread", "soda"], 575); //time is defaulted to time of program run
+// console.log(firstTicket);
 
 /*
     Call the `updateStatus` method on
@@ -54,3 +78,4 @@
 */
 
 //CODE HERE
+firstTicket.updateStatus("cooking");

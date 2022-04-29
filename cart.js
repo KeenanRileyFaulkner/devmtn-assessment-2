@@ -60,7 +60,7 @@ const calcFinalPrice = (cartTotal, couponValue, tax) => {
     return Number(finalTotal.toFixed(2));
 }
 
-console.log(calcFinalPrice(summedPrice, 5.00, 0.075));
+// console.log(calcFinalPrice(summedPrice, 5.00, 0.075));
 
 //////////////////PROBLEM 3////////////////////
 /*  
@@ -85,11 +85,9 @@ console.log(calcFinalPrice(summedPrice, 5.00, 0.075));
 /*
     TEXT ANSWER HERE
     Name(string) - so the company can be personable (string type because names are typically ascii represented)
-    OrderNum(int) - so the company can keep track of the order placed (and the customer can too) (number type because it's a number)
-    OrderTime(string) - so the comapany can be timely in getting orders ready (string type because we can get currTime as string w/ function)
+    Tickets(arr) - allows a customer to have multiple orders at once (array of ticket/order objects)
+    Phone Number(Number) - allows the company to text the customer updates on their order(s)
     PaymentCardNum(int) - so the company can get their money (card numbers are always number types)
-
-    Could have more like pickup time, numEntrees, totalCost etc, but I'll stick to those four for this exercise
 */
 
 /*
@@ -98,21 +96,15 @@ console.log(calcFinalPrice(summedPrice, 5.00, 0.075));
 */
 
 //CODE HERE
-//because the program recompiles on run, the time is always the time the program runs at.
-//On a running server, that time should just be whatever time the Customer is instantiated.
-function currTime() {
-    const today = new Date();
-    return today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-}
 
 class Customer {
-    constructor(name, orderNum, payCardNum, orderTime = currTime()) {
+    constructor(name, payCardNum, phoneNumber, tickets = []) {
         this.name = name;
-        this.orderNum = orderNum;
-        this.orderTime = orderTime;
         this.payCardNum = payCardNum;
+        this.phoneNumber = phoneNumber;
+        this.tickets = tickets;
     }
 }
 
-let keenanrf = new Customer("Keenan", 148, 1234567890123456);
-console.log(keenanrf);
+// let keenanrf = new Customer("Keenan", 1234567890123456, 8012345678); //tickets defaults to empty array
+// console.log(keenanrf);
