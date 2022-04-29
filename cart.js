@@ -35,7 +35,8 @@ const cart = [
 
 //CODE HERE
 
-// const summedPrice = cart.reduce(/* CALLBACK HERE */)
+const summedPrice = cart.reduce((acc, curr) => acc += curr.price, 0);
+// console.log(summedPrice);
 
 
 //////////////////PROBLEM 2////////////////////
@@ -54,8 +55,12 @@ const cart = [
 */
 
 //CODE HERE
+const calcFinalPrice = (cartTotal, couponValue, tax) => {
+    let finalTotal = (cartTotal * (1 + tax)) - couponValue;
+    return Number(finalTotal.toFixed(2));
+}
 
-
+console.log(calcFinalPrice(summedPrice, 5.00, 0.075));
 
 //////////////////PROBLEM 3////////////////////
 /*  
@@ -79,7 +84,12 @@ const cart = [
 
 /*
     TEXT ANSWER HERE
+    Name(string) - so the company can be personable (string type because names are typically ascii represented)
+    OrderNum(int) - so the company can keep track of the order placed (and the customer can too) (number type because it's a number)
+    OrderTime(string) - so the comapany can be timely in getting orders ready (string type because we can get currTime as string w/ function)
+    PaymentCardNum(int) - so the company can get their money (card numbers are always number types)
 
+    Could have more like pickup time, numEntrees, totalCost etc, but I'll stick to those four for this exercise
 */
 
 /*
@@ -88,3 +98,21 @@ const cart = [
 */
 
 //CODE HERE
+//because the program recompiles on run, the time is always the time the program runs at.
+//On a running server, that time should just be whatever time the Customer is instantiated.
+function currTime() {
+    const today = new Date();
+    return today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+}
+
+class Customer {
+    constructor(name, orderNum, payCardNum, orderTime = currTime()) {
+        this.name = name;
+        this.orderNum = orderNum;
+        this.orderTime = orderTime;
+        this.payCardNum = payCardNum;
+    }
+}
+
+let keenanrf = new Customer("Keenan", 148, 1234567890123456);
+console.log(keenanrf);
