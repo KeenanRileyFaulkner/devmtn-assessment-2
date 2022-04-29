@@ -105,7 +105,7 @@ class Manager extends Employee {
     }
 
     getEmployees() {
-        let manages = `${this.name} manages ${this.employees.join(" and ")}.`;
+        let manages = `${this.name} manages ${this.employees.reduce((text, value, i, employees) => text + (i < employees.length - 1 ? ', ' : ', and ') + value)}.`;
         console.log(manages);
         return manages; //return for use in real-life
     }
