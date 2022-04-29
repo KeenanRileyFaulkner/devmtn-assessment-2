@@ -51,7 +51,9 @@ class Ticket {
 
     updateStatus(newStatus) {
         this.status = newStatus;
-        console.log(`The order for customer ${this.customerId} is now ${this.status}`);
+        let updatedStatus = `The order for customer ${this.customerId} is now ${this.status}`;
+        console.log(updatedStatus);
+        return updatedStatus; // only console log for the sake of this exercise. return is actually usable
     }
 }
 

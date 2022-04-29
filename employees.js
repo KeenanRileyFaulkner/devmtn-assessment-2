@@ -20,7 +20,18 @@
 */
 
 //CODE HERE
+class Employee {
+    constructor(name, shifts) {
+        this.name = name;
+        this.shifts = shifts;
+    }
 
+    getSchedule() {
+        let schedule = `${this.name} works on ${this.shifts.join(" and ")}.`;
+        console.log(schedule);
+        return schedule; //better to return than to log (do both for the sake of this exercise)
+    }
+}
 
 
 /*
@@ -34,6 +45,7 @@
 */
 
 //CODE HERE
+let empOne = new Employee("Jess", ["weekday mornings", "weekday afternoons"]);
 
 /*
     Call the `getSchedule` method on the
@@ -41,6 +53,7 @@
 */
 
 //CODE HERE
+empOne.getSchedule();
 
 
 /*
@@ -56,6 +69,8 @@
 */
 
 //CODE HERE
+let empTwo = {...empOne};
+empTwo.name = "Nick";
 
 
 
@@ -83,7 +98,22 @@
 */
 
 //CODE HERE
+class Manager extends Employee {
+    constructor(employees, ...Employee) {
+        super(...Employee);
+        this.employees = employees;
+    }
 
+    getEmployees() {
+        let manages = `${this.name} manages ${this.employees.join(" and ")}.`;
+        console.log(manages);
+        return manages; //return for use in real-life
+    }
+
+    addEmployee(emp) {
+        this.employees.push(emp);
+    }
+}
 
 
 /*
@@ -98,7 +128,8 @@
 */
 
 //CODE HERE
-
+let manager = new Manager(["Cece", "Schmidt"], "Winston", ["weekday mornings", "weekday afternoons"]);
+// console.log(manager);
 
 /*
     Call the `getEmployees` method on the
@@ -106,6 +137,7 @@
 */
 
 //CODE HERE
+manager.getEmployees();
 
 /*
     Call the `addEmployee` method on the 
@@ -114,6 +146,7 @@
 */
 
 //CODE HERE 
+manager.addEmployee("Coach");
 
 /*
     Call the `getEmployees` method on the
@@ -122,3 +155,4 @@
 */
 
 //CODE HERE
+manager.getEmployees();
