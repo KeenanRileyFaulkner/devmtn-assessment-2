@@ -131,7 +131,6 @@ let foodArr = [
 */
 
 const filteredFood = foodArr.filter(pizza => pizza.tags.includes("Cabsicum"));
-console.log(filteredFood);
 
 
 
@@ -192,14 +191,14 @@ function pizzaFilterByNum(pizza, property, number, type) {
     }
 }
 
-function pizzaFilterTag(pizza, tagName) {
+function pizzaFilterByTag(pizza, tagName) {
     return pizza.tags.includes(tagName);
 }
 
 const filterByProperty = (property, number = 0, type = "above", tag = "") => {
     let filteredArr;
     if(property === "tags") {
-        filteredArr = foodArr.filter(pizza => pizzaFilterTag(pizza, tag))
+        filteredArr = foodArr.filter(pizza => pizzaFilterByTag(pizza, tag));
     } else {
        filteredArr = foodArr.filter(pizza => pizzaFilterByNum(pizza, property, number, type));
     }
@@ -214,7 +213,8 @@ const filterByProperty = (property, number = 0, type = "above", tag = "") => {
 */
 
 //CODE HERE
-console.log(filterByProperty("popularity", 5, "Above"));
-console.log(filterByProperty("rating", 4.0, "BELOW"));
-console.log(filterByProperty("tags", 0, "ABOVE", "Fresh Tomato"));
-console.log(filterByProperty("rating", 4.4));
+console.log("Top five ranking:", filterByProperty("popularity", 5, "Above"));
+console.log("Rated low:", filterByProperty("rating", 4.0, "BELOW"));
+console.log("Contains fresh tomatos:", filterByProperty("tags", 0, "ABOVE", "Fresh Tomato"));
+console.log("Rated high:", filterByProperty("rating", 4.4));
+console.log("$20 or less:", filterByProperty("price", 20.01, "beLOw"));

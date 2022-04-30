@@ -27,7 +27,12 @@ class Employee {
     }
 
     getSchedule() {
-        let schedule = `${this.name} works on ${this.shifts.join(" and ")}.`;
+        let schedule;
+        if(this.shifts.length <= 2) {
+            schedule = `${this.name} works on ${this.shifts.reduce((text, value, i, shifts) => text + (i < shifts.length - 1 ? ', ' : ' and ') + value)}.`;
+        } else {
+            schedule = `${this.name} works on ${this.shifts.reduce((text, value, i, shifts) => text + (i < shifts.length - 1 ? ', ' : ', and ') + value)}.`;
+        }
         console.log(schedule);
         return schedule; //better to return than to log (do both for the sake of this exercise)
     }
@@ -105,7 +110,12 @@ class Manager extends Employee {
     }
 
     getEmployees() {
-        let manages = `${this.name} manages ${this.employees.reduce((text, value, i, employees) => text + (i < employees.length - 1 ? ', ' : ', and ') + value)}.`;
+        let manages;
+        if(this.employees.length <= 2) {
+            manages = `${this.name} manages ${this.employees.reduce((text, value, i, employees) => text + (i < employees.length - 1 ? ', ' : ' and ') + value)}.`;
+        } else {
+            manages = `${this.name} manages ${this.employees.reduce((text, value, i, employees) => text + (i < employees.length - 1 ? ', ' : ', and ') + value)}.`;
+        }
         console.log(manages);
         return manages; //return for use in real-life
     }

@@ -71,7 +71,6 @@ class Ticket {
 
 //CODE HERE
 let firstTicket = new Ticket(["pizza", "bread", "soda"], 575); //time is defaulted to time of program run
-// console.log(firstTicket);
 
 /*
     Call the `updateStatus` method on
